@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container">] <div class=" text-center mt-5 ">
+    <div class="container"> <div class=" text-center mt-5 ">
             <h1>Antes de iniciar o Quizz....</h1>
         </div>
         <div class="row ">
@@ -26,7 +26,7 @@
                     <div class="card-body bg-light">
                         <div class="container">
                             <h3>Poderia nos dizer seu nome e email?</h3>
-                            <form id="contact-form" role="form">
+                            <form id="contact-form" action="/create" role="form">
                                 <div class="controls">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -79,12 +79,11 @@
             "email": form_email
         };
 
-        fetch("/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+        $.ajax({
+            type: 'POST',
+            url: "/create",
+            data: JSON.stringify(dataObj),
+            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
         })
         .then((response) => response.json())
