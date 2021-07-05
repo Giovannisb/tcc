@@ -1,3 +1,5 @@
+from random import random
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
@@ -19,3 +21,7 @@ def create(request):
         return render(request, 'questions.html')
     except ValueError as e:
         raise ValueError(e)
+
+def game(request):
+    perguntas = Pergunta.objects.all()
+    return render(request, 'questions.html', {"Perguntas": perguntas})
